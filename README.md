@@ -1,5 +1,20 @@
+Originally created [here](https://github.com/maxUser/seng474_assignments) by [**@maxUser**](https://github.com/maxUser) and myself.  Was moved here as a part of a clean-up and to make development easier.
+
 # Components
+Descriptions of all stuff in this project.
+
+## Code
+All the code to collect and process the code will be stored in here.
+
+### `collect.py`
+Responsible for collecting DotA 2 match data from Steam API.
+
+### `process.py`
+Responsible for processing the data collected.
+
 ## Data
+Data collected is stored here.
+
 ### `heroes.json`
 Hero names and IDs.
 
@@ -9,9 +24,5 @@ DotA 2 match data used for training.
 ### `testing_data.json`
 DotA 2 match data used for testing.
 
-## Code
-### `collect.py`
-Responsible for collecting DotA 2 match data from Steam API.
-
-### `process.py`
-Responsible for processing the data collected.
+## Notebooks
+Any analysis of the dataset will be done using jupyter notebooks.
