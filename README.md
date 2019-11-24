@@ -10,14 +10,23 @@ $ source venv/bin/activate
 
 Install requirements (there aren't many).
 ```
-(venv)$ pip install -r requirements.txt
+(venv)$ pip3 install -r requirements.txt
 ```
 
-You can then open up jupyter from here using:
+If you run into trouble you may need to update `pip` with:
 ```
+(venv)$ pip3 install --upgrade pip
+```
+or:
+```
+(venv)$ curl https://bootstrap.pypa.io/get-pip.py | python3
+```
+
+You can then install and open up jupyter from here using:
+```
+(venv)$ pip3 install jupyter
 (venv)$ jupyter notebook
 ```
-Instructions for install jupyter notebook can be found [here](https://jupyter.readthedocs.io/en/latest/install.html).
 
 ## Run
 TODO: some examples
@@ -25,7 +34,7 @@ TODO: some examples
 ## Components Breakdown
 Descriptions of all stuff in this project.
 
-### Code
+### Scripts
 All the code to collect and process the code will be stored in here.
 
 ##### `collect.py`
