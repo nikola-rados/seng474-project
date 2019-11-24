@@ -59,3 +59,6 @@ DotA 2 match data used for testing.
 
 ### Notebooks
 Any analysis of the dataset will be done using jupyter notebooks.
+
+##### `analysis.ipynb`
+The main analysis file where we run our code for final project output.
