@@ -1,9 +1,9 @@
 import json
 import requests
-import argparse
 import time
 
-def collect(key, outfile, match_id, num_matches):
+
+def collect_data(key, outfile, match_id, num_matches):
     '''Collects DotA 2 match data using a Steam API key
 
     This function outputs match data to a file BUT the file must already
@@ -101,21 +101,3 @@ def get_match(key, match_id, count):
     except KeyError:
         print('KeyError: {}'.format(match_id))
         return False
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--key', '-k', help='API key', required=True)
-    parser.add_argument('--match-id', '-m', type=int,
-                        help='Starting match ID for lookup cycle',
-                        required=True)
-    parser.add_argument('--num-matches', '-n', default=5000, type=int,
-                        help='Number of matches to collect')
-    parser.add_argument('--outfile', '-o', default='match_data.json',
-                        help='Data output file')
-    args = parser.parse_args()
-
-    # Default settings when run were:
-    #   match_id = 5000012926
-    #   loops = 5000
-    collect(args.key, args.outfile, args.match_id, args.num_matches)
