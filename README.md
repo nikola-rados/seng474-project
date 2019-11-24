@@ -13,6 +13,12 @@ Install requirements (there aren't many).
 (venv)$ pip install -r requirements.txt
 ```
 
+You can then open up jupyter from here using:
+```
+(venv)$ jupyter notebook
+```
+Instructions for install jupyter notebook can be found [here](https://jupyter.readthedocs.io/en/latest/install.html).
+
 ## Run
 TODO: some examples
 
