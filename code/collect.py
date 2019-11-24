@@ -20,11 +20,11 @@ def collect(key, outfile, match_id, num_matches):
         Steam API key, we keep ours private.  If you want one you'll have to
         generate it yourself.
     outfile : string
-        Name of the file you wish the data to output to.
+        Name of the file you wish the data to output to
     match_id : int
-        Match ID.
+        Match ID
     num_matches : int
-        Number of matches to collect.
+        Number of matches to collect
     '''
     invalid_ids = 0
     count = 1
@@ -63,14 +63,14 @@ def get_match(key, match_id, count):
         Steam API key, we keep ours private.  If you want one you'll have to
         generate it yourself.
     match_id : int
-        Match ID.
+        Match ID
     count : int
-        Classifies which loop attempt we are on.
+        Classifies which loop attempt we are on
 
     Returns
     -------
     bool
-        True if the data was collect, False if request was invalid.
+        True if the data was collect, False if request was invalid
     '''
     api = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v1/'
     api_suffix = '?match_id={}&key={}'.format(match_id, key)
