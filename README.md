@@ -4,8 +4,8 @@ Originally created [here](https://github.com/maxUser/seng474_assignments) by [**
 ## Setup
 To run the program create and enter a python3 (3.6+) virtual environment.
 ```
-$python3 -m venv venv
-$source venv/bin/activate
+$ python3 -m venv venv
+$ source venv/bin/activate
 ```
 
 Install requirements (there aren't many).
