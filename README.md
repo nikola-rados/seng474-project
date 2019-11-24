@@ -1,6 +1,22 @@
+# SENG 474 Final Project
 Originally created [here](https://github.com/maxUser/seng474_assignments) by [**@maxUser**](https://github.com/maxUser) and myself.  Was moved here as a part of a clean-up and to make development easier.
 
-# Components
+## Setup
+To run the program create and enter a python3 (3.6+) virtual environment.
+```
+$python3 -m venv venv
+$source venv/bin/activate
+```
+
+Install requirements (there aren't many).
+```
+(venv)$ pip install -r requirements.txt
+```
+
+## Run
+TODO: some examples
+
+## Components Breakdown
 Descriptions of all stuff in this project.
 
 ## Code
