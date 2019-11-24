@@ -13,7 +13,6 @@ Install requirements (there aren't many).
 (venv)$ pip3 install -r requirements.txt
 (venv)$ pip3 install .
 ```
-NOTE: Until we make a `setup.py` file we will not be able to run the second command.  Furthermore, we need this before we can import methods from around our own code.
 
 If you run into trouble you may need to update `pip` with:
 ```
@@ -36,15 +35,6 @@ TODO: some examples
 ## Components Breakdown
 Descriptions of all stuff in this project.
 
-### Scripts
-All the code to collect and process the code will be stored in here.
-
-##### `collect.py`
-Responsible for collecting DotA 2 match data from Steam API.
-
-##### `process.py`
-Responsible for processing the data collected.
-
 ### Data
 Data collected is stored here.
 
@@ -57,8 +47,23 @@ DotA 2 match data used for training.
 ##### `testing_data.json`
 DotA 2 match data used for testing.
 
+### Modules
+Base python code that interacts with API, cleans and processes data.
+
+##### `collect.py`
+Responsible for collecting DotA 2 match data from Steam API.
+
+##### `process.py`
+Responsible for processing the data collected.
+
 ### Notebooks
 Any analysis of the dataset will be done using jupyter notebooks.
 
 ##### `analysis.ipynb`
 The main analysis file where we run our code for final project output.
+
+### Scripts
+Contains python scripts that use the modules.
+
+##### `get_data.py`
+Uses `collect` module to get DotA 2 match data.
