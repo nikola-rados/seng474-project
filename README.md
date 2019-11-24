@@ -1,2 +1,2 @@
-# sen474-project
+# seng474-project
 Data mining final project
