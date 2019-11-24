@@ -1,2 +1,4 @@
 venv
 notebooks/.ipynb_checkpoints
+modules/__pycache__/
+data/__pycache__/
