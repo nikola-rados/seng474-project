@@ -1,4 +1,4 @@
-from modules import collect
+from modules.collect import collect_data
 import argparse
 
 
