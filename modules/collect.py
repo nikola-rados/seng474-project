@@ -1,14 +1,15 @@
 import json
 import requests
 import time
+import os
 
 
 def collect_data(key, outfile, match_id, num_matches):
     '''Collects DotA 2 match data using a Steam API key
 
-    This function outputs match data to a file BUT the file must already
-    contain one dictionary.  The function run `get_match` a specified number
-    of times and appends `]` to close the list.
+    This function outputs match data to a file. The function runs `get_match`
+    a specified number of times and appends `]` to close the list. Outputs data
+    to a temporary data file, which must be appended to training_data.json.
 
     Since we are iterating using some starting ID there is a chance that there
     are invalid responses.  In this case we simply tally the instances and
@@ -26,11 +27,13 @@ def collect_data(key, outfile, match_id, num_matches):
     num_matches : int
         Number of matches to collect
     '''
+    print('Start Collecting')
     invalid_ids = 0
+    valid_ids = 0
     count = 1
 
     for i in range(num_matches):
-        result = get_match(key, match_id, count)
+        result = get_match(key, match_id, count, outfile, valid_ids)
 
         # we can't overwhelm the API
         time.sleep(2)
@@ -40,18 +43,20 @@ def collect_data(key, outfile, match_id, num_matches):
         # tally invalid cases
         if not result:
             invalid_ids += 1
+        else:
+            valid_ids += 1
 
     with open(outfile, 'a') as file:
         file.write(']')
 
-    with open(outfile, 'r') as file:
-        data = json.load(file)
 
+    from process import read_file
+    data = read_file(outfile)
     print('Matches loaded: {}'.format(len(data)))
     print('Invalid match IDs: {}'.format(invalid_ids))
 
 
-def get_match(key, match_id, count):
+def get_match(key, match_id, count, outfile, valid_ids):
     '''Helper function to collect individual matches
 
     This function appends a comma followed by a match dictionary to the json
@@ -89,13 +94,19 @@ def get_match(key, match_id, count):
     # Check if match ID returns a match
     try:
         if 'error' in match_data['result'].keys():
+            # match_id returns invalid match
             print('\t{}'.format(match_data['result']['error']))
             return False
         else:
-            with open('match_data3.json', 'a') as file:
-                file.write(', ')
-                json.dump(match_data, file)
-                # json.dump(match_data, file, indent=4, sort_keys=True)
+            # valid match is appended to json file
+            with open(outfile, 'a+') as file:
+                if valid_ids == 0:
+                    file.write('[')
+                    json.dump(match_data, file)
+
+                else:
+                    file.write(', ')
+                    json.dump(match_data, file)
             return True
 
     except KeyError:
