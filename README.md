@@ -19,26 +19,26 @@ TODO: some examples
 ## Components Breakdown
 Descriptions of all stuff in this project.
 
-## Code
+### Code
 All the code to collect and process the code will be stored in here.
 
-### `collect.py`
+#### `collect.py`
 Responsible for collecting DotA 2 match data from Steam API.
 
-### `process.py`
+#### `process.py`
 Responsible for processing the data collected.
 
-## Data
+### Data
 Data collected is stored here.
 
-### `heroes.json`
+#### `heroes.json`
 Hero names and IDs.
 
-### `training_data.json`
+#### `training_data.json`
 DotA 2 match data used for training.
 
-### `testing_data.json`
+#### `testing_data.json`
 DotA 2 match data used for testing.
 
-## Notebooks
+### Notebooks
 Any analysis of the dataset will be done using jupyter notebooks.
