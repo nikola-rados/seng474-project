@@ -330,7 +330,7 @@ def get_team_scores(match):
     return {'radiant_score': match['radiant_score'], 'dire_score': match['dire_score']}
 
 
-def get_hero_winrates(data):
+def get_hero_winrates(data, hero_file):
     '''Calculate hero winrates given dataset
 
     This method uses the dataset given and calculates the win rate of each of
@@ -338,13 +338,15 @@ def get_hero_winrates(data):
 
     data : dict
         A dictionary containing DotA 2 match data
+    hero_file : string
+        Filename for file that contains hero info
 
     Returns
     -------
     dict
         Hero IDs as keys and their win rates as the value
     '''
-    heroes = read_file('data/heroes.json')
+    heroes = read_file(hero_file)
 
     winrates = {}
     for hero in heroes['result']['heroes']:
@@ -354,7 +356,7 @@ def get_hero_winrates(data):
             if did_hero_win_match(match, hero['id']):
                 wins += 1
 
-        winrates[hero['id']] = get_win_percent(len(hero_data), wins)
+        winrates[hero['id']] = calculate_win_percent(len(hero_data), wins)
 
     return winrates
 
