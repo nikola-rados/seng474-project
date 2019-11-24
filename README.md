@@ -11,7 +11,9 @@ $ source venv/bin/activate
 Install requirements (there aren't many).
 ```
 (venv)$ pip3 install -r requirements.txt
+(venv)$ pip3 install .
 ```
+NOTE: Until we make a `setup.py` file we will not be able to run the second command.  Furthermore, we need this before we can import methods from around our own code.
 
 If you run into trouble you may need to update `pip` with:
 ```
