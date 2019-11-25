@@ -377,6 +377,7 @@ def calculate_winrate_average(team_roster, winrates):
 
     return winrate/float(5)
 
+
 def get_number_of_standing_buildings(status):
     '''Returns a simple count of buildings still standing
 
