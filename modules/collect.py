@@ -1,8 +1,6 @@
 import json
 import requests
 import time
-import os
-
 
 def collect_data(key, outfile, match_id, num_matches):
     '''Collects DotA 2 match data using a Steam API key
@@ -91,6 +89,7 @@ def get_match(key, match_id, count, outfile, valid_ids):
 
     match_data = data_request.json()
 
+    '''TODO: make new function for the code below here'''
     # Check if match ID returns a match
     try:
         if 'error' in match_data['result'].keys():
@@ -112,3 +111,52 @@ def get_match(key, match_id, count, outfile, valid_ids):
     except KeyError:
         print('KeyError: {}'.format(match_id))
         return False
+
+
+def combine_data(curr_data_file, new_data_file):
+    '''Combine file containing newly mined data with current dataset
+
+       Step 1) Read both files and load them json style
+       Step 2) Combine them as you would a list in Python and write it to file
+       Step 3) Clean up the file to make it json readable
+
+       Look into step 2... line 141 might be redundant since we clean then write
+       in step 3.
+
+       Parameters
+       ----------
+       curr_data_file : json file
+       new_data_file : json file
+    '''
+    # Step 1
+    with open(curr_data_file, 'r') as file:
+        curr_data = json.load(file)
+
+    with open(new_data_file, 'r') as file:
+        new_data = json.load(file)
+
+    print('Current data size: {}'.format(len(curr_data)))
+    print('New data size: {}'.format(len(new_data)))
+
+    # Step 2
+    combined_data = curr_data + new_data
+
+    print('Combined data size: {}'.format(len(combined_data)))
+
+    with open(curr_data_file, 'w') as file:
+        file.write(str(combined_data))
+
+    # Step 3
+    with open(curr_data_file, 'r') as file:
+        clean_data = file.read()
+
+    clean_data = data.replace('\'', '\"')
+    clean_data = data.replace('True', 'true')
+    clean_data = data.replace('False', 'false')
+
+    with open(curr_data_file, 'w') as file:
+        file.write(data)
+
+    with open(new_data_file, 'w') as file:
+        # delete contents of new_data_file
+        file.truncate()
