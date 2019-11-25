@@ -414,14 +414,14 @@ def write_to_csv(filename, mode, data):
         writer.writerows(data)
 
 
-def to_csv(filename, net_worth, net_xp, team_winrate_avg, score,
-           barracks_radiant, barracks_dire, radiant_win):
+def to_csv(filename, net_worth, net_xp, team_winrate_avg, score, net_barracks,
+           radiant_win):
     '''Put items into csv'''
     if not isfile(filename):
         headers = ['net_worth', 'net_xp', 'team_winrate_avg', 'score',
-                   'barracks_radiant', 'barracks_dire', 'radiant_win']
+                   'net_barracks', 'radiant_win']
         write_to_csv(filename, 'w', headers)
 
-    data = [net_worth, net_xp, team_winrate_avg, score, barracks_radiant,
-            barracks_dire, radiant_win]
+    data = [net_worth, net_xp, team_winrate_avg, score, net_barracks,
+            radiant_win]
     write_to_csv(filename, 'a', data)
