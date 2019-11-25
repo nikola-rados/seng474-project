@@ -376,3 +376,29 @@ def calculate_winrate_average(team_roster, winrates):
         winrate += winrates[player['hero_id']]
 
     return winrate/float(5)
+
+def get_number_of_standing_buildings(status):
+    '''Returns a simple count of buildings still standing
+
+    Parameters
+    ----------
+    status : integer
+
+    Description
+    -----------
+    Towers are represented by 16 bit unsigned integers. The leftmost 5 bits are
+    irrelevant. Starting with the 6th leftmost bit the bits represent whether a
+    tower is standing (1) or has been destroyed (0). From the left, bits 6 and 7
+    each represent a tier 4 tower. 8, 9, and 10 represent the bot towers (tier
+    3 to tier 1). 11, 12, 13 represent the mid towers. 14, 15, 16 represent the
+    top towers.
+    Barracks are represented by 8 bit unsigned integers. The logic is the same
+    as for towers. The 2 leftmost bits are irrelevant. Bits 3 and 4 = bot
+    barracks. Bits 5 and 6 = mid barracks. Bits 7 and 8 = top barracks.
+    '''
+    status = bin(status)
+    buildings_alive = 0
+    for building in status:
+        if building == '1':
+            buildings_alive += 1
+    return buildings_alive
