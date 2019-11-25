@@ -1,4 +1,6 @@
 import json
+import csv
+from os.path import isfile
 
 
 def read_file(filename):
@@ -403,3 +405,23 @@ def get_number_of_standing_buildings(status):
         if building == '1':
             buildings_alive += 1
     return buildings_alive
+
+
+def write_to_csv(filename, mode, data):
+    '''todo'''
+    with open(filename, mode) as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(data)
+
+
+def to_csv(filename, net_worth, net_xp, team_winrate_avg, score,
+           barracks_radiant, barracks_dire, radiant_win):
+    '''Put items into csv'''
+    if not isfile(filename):
+        headers = ['net_worth', 'net_xp', 'team_winrate_avg', 'score',
+                   'barracks_radiant', 'barracks_dire', 'radiant_win']
+        write_to_csv(filename, 'w', headers)
+
+    data = [net_worth, net_xp, team_winrate_avg, score, barracks_radiant,
+            barracks_dire, radiant_win]
+    write_to_csv(filename, 'a', data)
