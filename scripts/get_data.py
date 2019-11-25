@@ -6,7 +6,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--key', '-k', help='API key', required=True)
     parser.add_argument('--match-id', '-m', type=int,
-                        help='Starting match ID for lookup cycle',
+                        help='Starting match ID for lookup cycle. For example, use the latest match_id collected + 1',
                         required=True)
     parser.add_argument('--num-matches', '-n', default=5000, type=int,
                         help='Number of matches to collect')

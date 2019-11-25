@@ -128,6 +128,7 @@ def combine_data(curr_data_file, new_data_file):
        curr_data_file : json file
        new_data_file : json file
     '''
+    # TODO: look at https://docs.python.org/2/library/tempfile.html
     # Step 1
     with open(curr_data_file, 'r') as file:
         curr_data = json.load(file)

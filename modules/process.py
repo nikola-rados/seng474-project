@@ -425,3 +425,14 @@ def to_csv(filename, net_worth, net_xp, team_winrate_avg, score, net_barracks,
     data = [[net_worth, net_xp, team_winrate_avg, score, net_barracks,
             radiant_win]]
     write_to_csv(filename, 'a', data)
+
+def accuracy_score(results, expected):
+    total = [True if result == expect else False for result, expect in zip(results, expected)]
+    # get total instances of a match
+    matching = 0
+    for bool in total:
+        if bool:
+            matching += 1
+
+    # return accuracy in percent
+    return (float(matching) / float(len(total))) * 100
