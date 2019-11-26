@@ -89,7 +89,7 @@ def get_match(key, match_id, count, outfile, valid_ids):
 
     match_data = data_request.json()
 
-    '''TODO: make new function for the code below here'''
+    # TODO: make new function for the code below here
     # Check if match ID returns a match
     try:
         if 'error' in match_data['result'].keys():
