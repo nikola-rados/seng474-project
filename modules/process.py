@@ -383,32 +383,49 @@ def calculate_winrate_average(team_roster, winrates):
 def get_number_of_standing_buildings(status):
     '''Returns a simple count of buildings still standing
 
-    Parameters
-    ----------
-    status : integer
-
-    Description
-    -----------
     Towers are represented by 16 bit unsigned integers. The leftmost 5 bits are
     irrelevant. Starting with the 6th leftmost bit the bits represent whether a
     tower is standing (1) or has been destroyed (0). From the left, bits 6 and 7
     each represent a tier 4 tower. 8, 9, and 10 represent the bot towers (tier
     3 to tier 1). 11, 12, 13 represent the mid towers. 14, 15, 16 represent the
     top towers.
+
     Barracks are represented by 8 bit unsigned integers. The logic is the same
     as for towers. The 2 leftmost bits are irrelevant. Bits 3 and 4 = bot
     barracks. Bits 5 and 6 = mid barracks. Bits 7 and 8 = top barracks.
+
+    Parameters
+    ----------
+    status : int
+        Building status
+
+    Returns
+    -------
+    int
+        Number of building still standing
+
     '''
     status = bin(status)
     buildings_alive = 0
     for building in status:
         if building == '1':
             buildings_alive += 1
+    
     return buildings_alive
 
 
 def write_to_csv(filename, mode, data):
-    '''todo'''
+    '''Helper function to write data to csv file
+
+    Parameters
+    ----------
+    filename : string
+        Name of the csv file
+    mode : string
+        Mode to open the file with (r,w)
+    data : list
+        Nested list of input variables
+    '''
     with open(filename, mode) as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(data)
@@ -416,7 +433,25 @@ def write_to_csv(filename, mode, data):
 
 def to_csv(filename, net_worth, net_xp, team_winrate_avg, score, net_barracks,
            radiant_win):
-    '''Load data into csv'''
+    '''Load data into csv
+
+    Parameters
+    ----------
+    filename : string
+        Name of the csv file
+    net_worth : int
+        Radiant net worth difference
+    net_xp : int
+        Radiant net experience difference
+    team_winrate_avg : int
+        Radiant hero win rate difference
+    score : int
+        Radiant score difference
+    net_barracks : int
+        Radiant barracks difference
+    radiant_win : bool
+        Radiant win
+    '''
     if not isfile(filename):
         headers = [['net_worth', 'net_xp', 'team_winrate_avg', 'score',
                    'net_barracks', 'radiant_win']]
@@ -426,7 +461,22 @@ def to_csv(filename, net_worth, net_xp, team_winrate_avg, score, net_barracks,
             radiant_win]]
     write_to_csv(filename, 'a', data)
 
+
 def accuracy_score(results, expected):
+    '''Determine accuracy of Naive Bayes algorithm
+
+    Parameters
+    ----------
+    results : list
+        List of results stored as booleans
+    expected : list
+        Lost of expected values stored as booleans
+
+    Returns
+    -------
+    float
+        Accuracy of algorithm given as percent
+    '''
     total = [True if result == expect else False for result, expect in zip(results, expected)]
     # get total instances of a match
     matching = 0
