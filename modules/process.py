@@ -416,7 +416,7 @@ def write_to_csv(filename, mode, data):
 
 def to_csv(filename, net_worth, net_xp, team_winrate_avg, score, net_barracks,
            radiant_win):
-    '''Put items into csv'''
+    '''Load data into csv'''
     if not isfile(filename):
         headers = [['net_worth', 'net_xp', 'team_winrate_avg', 'score',
                    'net_barracks', 'radiant_win']]
