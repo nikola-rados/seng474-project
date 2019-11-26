@@ -410,7 +410,7 @@ def get_number_of_standing_buildings(status):
     for building in status:
         if building == '1':
             buildings_alive += 1
-    
+
     return buildings_alive
 
 
@@ -432,7 +432,7 @@ def write_to_csv(filename, mode, data):
 
 
 def to_csv(filename, net_worth, net_xp, team_winrate_avg, score, net_barracks,
-           radiant_win):
+           duration, radiant_win):
     '''Load data into csv
 
     Parameters
@@ -449,15 +449,17 @@ def to_csv(filename, net_worth, net_xp, team_winrate_avg, score, net_barracks,
         Radiant score difference
     net_barracks : int
         Radiant barracks difference
+    duration : int
+        Match duration
     radiant_win : bool
         Radiant win
     '''
     if not isfile(filename):
         headers = [['net_worth', 'net_xp', 'team_winrate_avg', 'score',
-                   'net_barracks', 'radiant_win']]
+                   'net_barracks', 'duration', 'radiant_win']]
         write_to_csv(filename, 'w', headers)
 
-    data = [[net_worth, net_xp, team_winrate_avg, score, net_barracks,
+    data = [[net_worth, net_xp, team_winrate_avg, score, net_barracks, duration,
             radiant_win]]
     write_to_csv(filename, 'a', data)
 
