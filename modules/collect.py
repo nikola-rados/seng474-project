@@ -1,6 +1,8 @@
 import json
 import requests
 import time
+from process import read_file
+
 
 def collect_data(key, outfile, match_id, num_matches):
     '''Collects DotA 2 match data using a Steam API key
@@ -47,8 +49,6 @@ def collect_data(key, outfile, match_id, num_matches):
     with open(outfile, 'a') as file:
         file.write(']')
 
-
-    from process import read_file
     data = read_file(outfile)
     print('Matches loaded: {}'.format(len(data)))
     print('Invalid match IDs: {}'.format(invalid_ids))
