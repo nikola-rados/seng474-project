@@ -53,6 +53,8 @@ def collect_data(key, outfile, match_id, num_matches):
     print('Matches loaded: {}'.format(len(data)))
     print('Invalid match IDs: {}'.format(invalid_ids))
 
+    # should run combine_data() here to append new data to existing data
+
 
 def get_match(key, match_id, count, outfile, valid_ids):
     '''Helper function to collect individual matches
@@ -78,7 +80,7 @@ def get_match(key, match_id, count, outfile, valid_ids):
     api = 'https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v1/'
     api_suffix = '?match_id={}&key={}'.format(match_id, key)
     data_request = requests.get(api + api_suffix)
-    print('Response {}: {}'.format(count, data_request))
+    print('Response {}: {}'.format(count, data_request.status_code))
 
     # data_request is a requests.model.Response object. See link for its
     # methods:
@@ -151,12 +153,12 @@ def combine_data(curr_data_file, new_data_file):
     with open(curr_data_file, 'r') as file:
         clean_data = file.read()
 
-    clean_data = data.replace('\'', '\"')
-    clean_data = data.replace('True', 'true')
-    clean_data = data.replace('False', 'false')
+    clean_data = clean_data.replace('\'', '\"')
+    clean_data = clean_data.replace('True', 'true')
+    clean_data = clean_data.replace('False', 'false')
 
     with open(curr_data_file, 'w') as file:
-        file.write(data)
+        file.write(clean_data)
 
     with open(new_data_file, 'w') as file:
         # delete contents of new_data_file
