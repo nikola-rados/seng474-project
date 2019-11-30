@@ -260,7 +260,14 @@ def filter_bad_data(data):
     list
         List of match dictionaries
     '''
-    return [match for match in data if 'radiant_win' in match['result'].keys()]
+    matches = []
+    for match in data:
+        if 'radiant_win' in match['result'].keys():
+            for player in match['result']['players']:
+                if player['hero_id'] > 0:
+                    matches.append(match)
+    
+    return matches
 
 
 def determine_teams(match):
